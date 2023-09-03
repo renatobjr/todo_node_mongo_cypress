@@ -1,0 +1,36 @@
+version: '3'
+services:
+  web:
+    build: 
+      dockerfile: web.dockerfile
+      context: .
+    image: todo-web
+    container_name: todo-web
+    working_dir: /var/www
+    ports:
+      - 8080:8080
+    volumes:
+      - ./web:/var/www
+    networks:
+      - todo-network
+  api:
+    build:
+      dockerfile: api.dockerfile
+      context: .
+    image: todo-api
+    container_name: todo-api
+    working_dir: /var/www
+    ports:
+      - 3000:3000
+    volumes:
+      - ./api:/var/www
+    networks:
+      - todo-network
+    
+  # mongo:
+  # mongo-test:
+  # mongo-express:
+  # mongo-express-test:
+networks:
+  todo-network:
+    driver: bridge
