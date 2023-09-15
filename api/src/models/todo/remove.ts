@@ -1,11 +1,13 @@
-const remove = () => {
+import todo from '../../schemas/todo';
+import apiResponse from '../../helpers/apiResponse';
+
+const remove = async  (id: String) => {
   try {
-    return {
-      method: 'remove',
-      status: true,
-    }
+    let result = await todo.findByIdAndUpdate(id, { status: 'deleted'});
+
+    return apiResponse('remove', true, result);
   } catch (error: any) {
-    return error;
+    return apiResponse('remove', false, error);
   }
 }
 

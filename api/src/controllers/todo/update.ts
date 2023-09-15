@@ -1,6 +1,6 @@
 import updateTodo from '../../models/todo/update';
 
-const update = (req: any, res: any) => {
-  res.send(updateTodo());
+const update = async (req: any, res: any) => {
+  res.send(await updateTodo(req.body));
 };
 export default update;

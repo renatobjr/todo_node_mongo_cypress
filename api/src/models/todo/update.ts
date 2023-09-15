@@ -1,11 +1,12 @@
-const update = () => {
+import todo from '../../schemas/todo';
+import apiResponse from '../../helpers/apiResponse';
+
+const update = async (payload: any) => {
   try {
-    return {
-      method: 'update',
-      status: true
-    }
+    const result = await todo.findOneAndUpdate({_id: payload._id}, payload, {new: true});
+    return apiResponse('update', true, result);
   } catch (error: any) {
-    return error;
+    return apiResponse('update', false, error);
   }
 }
 

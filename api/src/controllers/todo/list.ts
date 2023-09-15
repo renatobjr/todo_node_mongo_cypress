@@ -1,8 +1,7 @@
 import listTodo from '../../models/todo/list';
 
-const list = (req:any, res: any) => {
-  console.log('list')
-  res.send(listTodo());
+const list = async (req:any, res: any) => {
+  res.send(await listTodo());
 }
 
 export default list;

@@ -27,8 +27,32 @@ services:
     networks:
       - todo-network
     
-  # mongo:
-  # mongo-test:
+  mongo:
+    image: mongo:4.4.8-focal
+    container_name: todo-mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - './mongo/:/data/db'
+    networks:
+      - todo-network
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: todo
+  mongo-test:
+    image: mongo:4.4.8-focal
+    container_name: todo-mongo-test
+    ports:
+      - 27018:27017
+    volumes:
+      - './mongo/test:/data/db'
+    networks:
+      - todo-network
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: todo_test
   # mongo-express:
   # mongo-express-test:
 networks:

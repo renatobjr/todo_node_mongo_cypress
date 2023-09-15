@@ -1,15 +1,23 @@
-import { Schema, Document, model, models, ObjectId } from "mongoose";
+import { Schema, model, models } from "mongoose";
 
 enum TodoPriority {
-  Normal = 'Normal',
-  Urgente = 'Urgente'
+  low = 'low',
+  normal = 'normal',
+  urgent = 'urgent'
 }
 
 const schema = new Schema({
-  title: String,
   description: String,
   priority: {
     type: String,
-    enum: TodoPriority.Normal
-  } 
-})
+    enum: TodoPriority
+  },
+  status: {
+    type: String,
+    default: 'pending',
+  }
+},{ timestamps: true});
+
+const Todo = models.todo || model('todo', schema);
+
+export default Todo;

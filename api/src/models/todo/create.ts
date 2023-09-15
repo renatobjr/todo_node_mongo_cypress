@@ -1,12 +1,14 @@
-const create = (body: any) => {
+import todo from  '../../schemas/todo';
+import apiResponse from '../../helpers/apiResponse';
+
+const create = async (payload: any) => {
   try {
-    console.log(body)
-    return {
-      method: 'create',
-      status: true,
-    }
+    const task = new todo({ ...payload })
+    
+    let result = await task.save();
+    return apiResponse('create', true, result);
   } catch (error: any) {
-    return error;
+    return apiResponse('create', false, error);
   }
 }
 

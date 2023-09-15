@@ -1,7 +1,7 @@
 import removeTodo from '../../models/todo/remove';
 
-const remove = (req:any, res: any) => {
-  res.send(removeTodo());
+const remove = async (req:any, res: any) => {
+  res.send(await removeTodo(req.params.id));
 }
 
 export default remove;
