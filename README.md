@@ -20,7 +20,7 @@ After that execute:
 # Docker compose
 docker-compose up
 ```
-To running the tests or wirting somenthing new in other terminal you call the follow command:
+To running the tests or wrinting somenthing new in other terminal you call the follow command:
 ```
 # npx
 npx cypress open
